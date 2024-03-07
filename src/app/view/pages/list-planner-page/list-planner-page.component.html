@@ -1,0 +1,5 @@
+<mat-action-list role="list">
+    @for( plannerName of plannerNameList; track plannerName ){
+        <mat-list-item (click)="printf(plannerName)" >{{plannerName}}</mat-list-item>
+    }
+</mat-action-list>

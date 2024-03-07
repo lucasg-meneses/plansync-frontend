@@ -1,0 +1,38 @@
+.login-page{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card-content{
+    padding: 2em;
+    display: inline-flex;
+    flex-direction: column;
+}
+.login-card-content form{
+    width: 25vw;
+    height: 30vh;
+    display: inline-flex;
+    padding: auto;
+    flex-direction: column;
+}
+.login-card-content form a {
+    align-self: flex-end;
+    margin-bottom: 1em;
+}
+.login-card-title{
+    display: inline;
+    align-items: center;
+    text-align: center;
+}
+.login-page-signup{
+    display: inline-flex;
+    justify-items: center;
+    align-self: center;
+    padding-top: 1em;
+}
+.login-page-signup p{
+    margin: auto;
+}

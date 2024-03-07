@@ -1,0 +1,29 @@
+<section class="login-page">
+    <mat-card class="login-card">
+        <mat-card-header class="login-card-title">
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="login-card-content">
+            <form>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput value="{{username}}" type="text">
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <mat-label>password</mat-label>
+                    <input matInput  value="{{password}}" type="password">
+                </mat-form-field>
+                <a mat-button color="primary">Forgot Password?</a>
+                <button mat-raised-button color="primary">Login</button>
+            </form>
+            <div class="login-page-signup">
+                <p>Don't have an account?</p>
+                <a mat-button color="primary">Sign Up</a>
+            </div>
+            
+        </mat-card-content>
+        <mat-card-footer></mat-card-footer>
+    </mat-card>
+
+</section>
