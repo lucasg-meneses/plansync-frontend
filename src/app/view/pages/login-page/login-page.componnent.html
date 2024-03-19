@@ -4,18 +4,18 @@
             <mat-card-title>Login</mat-card-title>
         </mat-card-header>
         <mat-card-content class="login-card-content">
-            <form>
+            <form [formGroup]="formLogin">
                 <mat-form-field>
                     <mat-label>Username</mat-label>
-                    <input matInput value="{{username}}" type="text">
+                    <input matInput type="text"  name="username" formControlName="username" required>
                 </mat-form-field>
         
                 <mat-form-field>
                     <mat-label>password</mat-label>
-                    <input matInput  value="{{password}}" type="password">
+                    <input matInput type="password" name="password" formControlName="password" required>
                 </mat-form-field>
                 <a mat-button color="primary">Forgot Password?</a>
-                <button mat-raised-button color="primary">Login</button>
+                <button mat-raised-button color="primary" (click)="login()">Login</button>
             </form>
             <div class="login-page-signup">
                 <p>Don't have an account?</p>

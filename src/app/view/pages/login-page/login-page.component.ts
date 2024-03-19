@@ -1,17 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { AuthService } from '../../../services/auth.service';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Credentials } from '../../../models/auth/credentials.model';
 
 @Component({
-  selector: 'app-login-page',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule],
+  imports: [
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [AuthService],
   templateUrl: './login-page.componnent.html',
   styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
-  username: string = '';
-  password: string = '';
+  private authService = inject(AuthService);
+  protected formService = inject(FormBuilder);
+  protected formLogin = this.formService.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required]
+  });
+
+  login() {
+    const username = this.formLogin.get('username');
+    const password = this.formLogin.get('password');
+    let credentials = {} as Credentials;
+    credentials.username = username?.value!;
+    credentials.password = password?.value!;
+
+    const authResponse = this.authService.login(credentials).subscribe(token => {
+      console.log(token);
+    }, 
+    (error) => {console.log(error)});
+  }
+
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 @Component({
-  selector: 'app-list-planner-page',
   standalone: true,
   imports: [MatListModule],
   templateUrl: './list-planner-page.component.html',

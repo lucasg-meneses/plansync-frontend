@@ -6,7 +6,7 @@ import { ListPlannerPageComponent } from './view/pages/list-planner-page/list-pl
 export const routes: Routes =  [
     { path: 'login', component: LoginPageComponent },
     // Rota protegida por autenticação
-    { path: 'planners', canActivate: [AuthGuard], loadChildren: () => ListPlannerPageComponent},
+    { path: 'planners', canActivate: [AuthGuard], component: ListPlannerPageComponent},
     // Outras rotas...
     { path: '', redirectTo: '/login', pathMatch: 'full' },
   ];
