@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Credentials } from '../../../models/auth/credentials.model';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -23,6 +24,8 @@ import { Credentials } from '../../../models/auth/credentials.model';
 })
 export class LoginPageComponent {
   private authService = inject(AuthService);
+  public router: Router = inject(Router);
+
   protected formService = inject(FormBuilder);
   protected formLogin = this.formService.group({
     username: ['', Validators.required],
@@ -33,13 +36,15 @@ export class LoginPageComponent {
     const username = this.formLogin.get('username');
     const password = this.formLogin.get('password');
     let credentials = {} as Credentials;
-    credentials.username = username?.value!;
+    credentials.login = username?.value!;
     credentials.password = password?.value!;
 
-    const authResponse = this.authService.login(credentials).subscribe(token => {
-      console.log(token);
-    }, 
-    (error) => {console.log(error)});
+    this.authService.login(credentials).subscribe((response) => {
+      if(response.token !== null){
+        this.router.navigate(['/planners']);
+      }
+    });
+    
   }
 
 }
