@@ -1,0 +1,30 @@
+.auth-card-content form{
+    width: 25vw;
+    height: 45vh;
+    display: inline-flex;
+    padding: auto;
+    flex-direction: column;
+}
+
+.auth-card-content  form {
+    align-self: flex-end;
+    margin-bottom: 1em;
+}
+.auth-card-content button{
+    padding: auto;
+}
+
+.auth-card-content{
+    padding: 2em;
+    display: inline-flex;
+    flex-direction: column;
+}
+.login-page-signup{
+    display: inline-flex;
+    justify-items: center;
+    align-self: center;
+    padding-top: 1em;
+}
+.login-page-signup p{
+    margin: auto;
+}

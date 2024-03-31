@@ -1,0 +1,44 @@
+<section class="planners-list">
+    <header>
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-button (click)="initListPlanners()" >PlanSync</button>
+            <div>
+                <button mat-icon-button>
+                    <mat-icon>search</mat-icon> 
+                </button>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                    <mat-icon>more_vert</mat-icon> 
+                </button>
+            </div>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item class="menu-item">
+                    <mat-icon>person</mat-icon> 
+                    <span>My account</span>
+                </button>
+                <button mat-menu-item class="menu-item" (click)="logout()">
+                    <mat-icon>logout</mat-icon> 
+                    <span>Logout</span>
+                </button>
+              </mat-menu>
+        </mat-toolbar>    
+    </header>
+    <main>
+        <mat-action-list role="list" >
+            @for( planner of listPlanners; track planner ){
+                <mat-list-item (click)= {} >
+                    <div matListItemTitle>{{planner.title}}</div>
+                    <div matListItemMeta>{{planner.month}} / {{planner.year}}</div>
+                    <div matListItemLine> Updated at {{getLastUpdate(planner.dateUpdated)}}</div>
+                </mat-list-item>
+            }
+        </mat-action-list>
+    </main>
+
+    <footer>
+        <button mat-fab color="accent" class="fab" (click)="addPlanner()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </footer>
+
+</section>

@@ -1,0 +1,27 @@
+<app-auth-modal-page-template title="Register">
+    <mat-card-content class="auth-card-content">
+        <form [formGroup]="formRegister">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput type="text"  name="username" formControlName="username" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" name="email" formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" name="password" formControlName="password" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Confirm password</mat-label>
+                <input matInput type="password" name="confirmpassword" formControlName="confirmpassword" required>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="register()">Register</button>
+        </form>
+        <div class="login-page-signup">
+            <p>Do have an account?</p>
+            <a mat-button color="primary" (click)="redirectToLogin()">Login</a>
+        </div>
+    </mat-card-content>
+</app-auth-modal-page-template>

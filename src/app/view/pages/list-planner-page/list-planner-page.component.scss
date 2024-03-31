@@ -1,0 +1,41 @@
+.planners-list {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.planners-list header {
+    width: 100%;
+    height: 10%;
+    display: inline-flex;
+
+}
+
+.toolbar {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-around;
+}
+
+.planners-list main {
+    width: 100%;
+    height: 100%;
+}
+
+.planners-list footer {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.planners-list footer button {
+    margin: 1em;
+}
