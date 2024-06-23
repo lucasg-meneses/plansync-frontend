@@ -4,29 +4,29 @@
             <button mat-button (click)="initListPlanners()" >PlanSync</button>
             <div>
                 <button mat-icon-button>
-                    <mat-icon>search</mat-icon> 
+                    <mat-icon>search</mat-icon>
                 </button>
                 <button mat-icon-button [matMenuTriggerFor]="menu">
-                    <mat-icon>more_vert</mat-icon> 
+                    <mat-icon>more_vert</mat-icon>
                 </button>
             </div>
 
             <mat-menu #menu="matMenu">
                 <button mat-menu-item class="menu-item">
-                    <mat-icon>person</mat-icon> 
+                    <mat-icon>person</mat-icon>
                     <span>My account</span>
                 </button>
                 <button mat-menu-item class="menu-item" (click)="logout()">
-                    <mat-icon>logout</mat-icon> 
+                    <mat-icon>logout</mat-icon>
                     <span>Logout</span>
                 </button>
               </mat-menu>
-        </mat-toolbar>    
+        </mat-toolbar>
     </header>
     <main>
         <mat-action-list role="list" >
             @for( planner of listPlanners; track planner ){
-                <mat-list-item (click)= {} >
+                <mat-list-item (click)= "getDetailsPlanner(planner.id)" >
                     <div matListItemTitle>{{planner.title}}</div>
                     <div matListItemMeta>{{planner.month}} / {{planner.year}}</div>
                     <div matListItemLine> Updated at {{getLastUpdate(planner.dateUpdated)}}</div>

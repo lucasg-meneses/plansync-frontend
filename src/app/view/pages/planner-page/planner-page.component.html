@@ -1,0 +1,64 @@
+<section class="planner-page">
+  <header>
+    <mat-toolbar color="primary" class="toolbar">
+      <button mat-icon-button (click)="backToPlanners()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <span>{{titlePage}}</span>
+      <div>
+        @if (!getEditMode()) {
+          <button mat-icon-button (click)="setEditMode(true)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        }
+        @if(getEditMode()){
+          <button mat-icon-button (click)="savePlanner()">
+            <mat-icon>save</mat-icon>
+          </button>
+        }
+      </div>
+
+    </mat-toolbar>
+  </header>
+  <main>
+    <form [formGroup]="form">
+      <mat-form-field class="planner-info-form title-input" appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput type="text"  name="title" formControlName="title" required >
+      </mat-form-field>
+      <div>
+        <mat-form-field class="planner-info-form" appearance="outline" >
+          <mat-label>Month</mat-label>
+          <input matInput type="number"  name="month" formControlName="month" required min="1" max="12">
+        </mat-form-field>
+        <mat-form-field class="planner-info-form" appearance="outline">
+          <mat-label>Year</mat-label>
+          <input matInput type="number"  name="year" formControlName="year" required min="{{getYearNow()}}">
+        </mat-form-field>
+      </div>
+    </form>
+
+
+    <mat-tab-group  mat-align-tabs="center">
+      @for (tabName of tabNameList; track $index) {
+        <mat-tab label="{{tabName}}">
+          <mat-list>
+            @for (item of [0, 1, 5, 3, 5,6,7,4,6,4,6,65,654,54]; track $index) {
+              <mat-list-item>
+                <app-todo-card-item />
+              </mat-list-item>
+
+            }
+          </mat-list>
+
+        </mat-tab>
+      }
+    </mat-tab-group>
+
+  </main>
+  <footer>
+    <button mat-fab color="accent" class="fab" >
+        <mat-icon>add</mat-icon>
+    </button>
+</footer>
+</section>

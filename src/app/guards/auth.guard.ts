@@ -11,7 +11,8 @@ export function AuthGuard(route: ActivatedRouteSnapshot,
   Promise<boolean | UrlTree> |
   boolean |
   UrlTree {
-  return AuthService.isAuthenticated()
+  const  auth = inject(AuthService);
+  return auth.isAuthenticated()
     ? true
     : inject(Router).createUrlTree(['/login']);
 }

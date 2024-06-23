@@ -1,19 +1,19 @@
 <app-auth-modal-page-template title="Register">
     <mat-card-content class="auth-card-content">
         <form [formGroup]="formRegister">
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Username</mat-label>
                 <input matInput type="text"  name="username" formControlName="username" required>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" name="email" formControlName="email" required>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" name="password" formControlName="password" required>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field appearance="outline">
                 <mat-label>Confirm password</mat-label>
                 <input matInput type="password" name="confirmpassword" formControlName="confirmpassword" required>
             </mat-form-field>

@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
   styleUrl: './list-planner-page.component.scss'
 })
 export class ListPlannerPageComponent {
+
   private plannerService: PlannerService = inject(PlannerService);
   private authService: AuthService = inject(AuthService);
   protected listPlanners: Array<Planner> = [];
@@ -42,10 +43,12 @@ export class ListPlannerPageComponent {
     this.authService.logout();
     this.router.navigate(['login']);
   }
-  addPlanner(){
-    this.router.navigate(['planner'])
+  addPlanner() {
+    this.router.navigate(['planners', 'new'])
   }
-
+  getDetailsPlanner(id :string) {
+    this.router.navigate(['planners', id])
+  }
   getLastUpdate(date: Date): string {
     return formatDistanceToNow(date, { addSuffix: true });
   }
