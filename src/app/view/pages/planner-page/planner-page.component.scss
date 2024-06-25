@@ -34,10 +34,15 @@
 }
 .planner-page footer {
   width: 100%;
+  height: 100%;
   display: inline-flex;
   justify-content: flex-end;
 }
 
+.date-form{
+  display: flex;
+  flex-direction: column;
+}
 .planner-page footer button {
   margin: 1em;
 }

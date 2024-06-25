@@ -26,7 +26,7 @@
         <mat-label>Title</mat-label>
         <input matInput type="text"  name="title" formControlName="title" required >
       </mat-form-field>
-      <div>
+      <div class="date-form">
         <mat-form-field class="planner-info-form" appearance="outline" >
           <mat-label>Month</mat-label>
           <input matInput type="number"  name="month" formControlName="month" required min="1" max="12">
@@ -39,19 +39,9 @@
     </form>
 
 
-    <mat-tab-group  mat-align-tabs="center">
+    <mat-tab-group  mat-align-tabs="center" [selectedIndex]="indexTab">
       @for (tabName of tabNameList; track $index) {
-        <mat-tab label="{{tabName}}">
-          <mat-list>
-            @for (item of [0, 1, 5, 3, 5,6,7,4,6,4,6,65,654,54]; track $index) {
-              <mat-list-item>
-                <app-todo-card-item />
-              </mat-list-item>
-
-            }
-          </mat-list>
-
-        </mat-tab>
+        <mat-tab label="{{tabName}}" ></mat-tab>
       }
     </mat-tab-group>
 

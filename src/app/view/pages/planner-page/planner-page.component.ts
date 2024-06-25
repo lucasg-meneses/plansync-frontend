@@ -36,6 +36,7 @@ export class PlannerPageComponent {
   protected titlePage: string = 'Planner Details';
   protected form: FormGroup;
   protected tabNameList: Array<string> = getWeekdayList();
+  protected indexTab: number = 0;
 
   constructor(
     private router: Router,
@@ -45,7 +46,7 @@ export class PlannerPageComponent {
 
     this.form = this.formBuilder.group({
       title: ['New Planner', [Validators.required]],
-      month: [1, [Validators.min(1), Validators.max(12), Validators.required]],
+      month: [this.getMonthNow(), [Validators.min(1), Validators.max(12), Validators.required]],
       year: [this.getYearNow(), [Validators.min(this.getYearNow()), Validators.required]]
     })
 
@@ -70,10 +71,11 @@ export class PlannerPageComponent {
         }
       );
     }
+    this.indexTab = this.getWeekdayNow() - 1;
   }
 
   protected savePlanner() {
-    throw new Error('Method not implemented.');
+
   }
   protected backToPlanners() {
     this.router.navigate(['planners']);
@@ -95,9 +97,16 @@ export class PlannerPageComponent {
       this.form.get('month')?.enable();
       this.form.get('year')?.enable();
     }
+    console.log(this.getWeekdayNow())
+  }
 
+  protected getWeekdayNow() {
+    return new Date().getDay()
   }
   protected getYearNow() {
     return new Date().getFullYear();
+  }
+  protected getMonthNow() {
+    return new Date().getMonth();
   }
 }

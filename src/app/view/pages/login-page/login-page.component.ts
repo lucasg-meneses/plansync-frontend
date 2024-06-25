@@ -8,6 +8,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { Credentials } from '../../../models/auth/credentials.model';
 import { Router } from '@angular/router';
 import { AuthModalPageTemplateComponent } from '../../components/auth-modal-page-template/auth-modal-page-template.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   standalone: true,
@@ -16,6 +17,7 @@ import { AuthModalPageTemplateComponent } from '../../components/auth-modal-page
     MatFormFieldModule,
     MatInputModule,
     MatCardContent,
+    MatGridListModule,
     AuthModalPageTemplateComponent,
     FormsModule,
     ReactiveFormsModule

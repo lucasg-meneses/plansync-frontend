@@ -1,6 +1,6 @@
 .auth-card-content form{
-    width: 25vw;
-    height: 30vh;
+    width: 300px;
+    height: auto;
     display: inline-flex;
     padding: auto;
     flex-direction: column;
@@ -20,6 +20,9 @@
     justify-items: center;
     align-self: center;
     padding-top: 1em;
+}
+button {
+    padding: 1em;
 }
 .login-page-signup p{
     margin: auto;
