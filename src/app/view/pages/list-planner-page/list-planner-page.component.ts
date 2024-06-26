@@ -35,7 +35,7 @@ export class ListPlannerPageComponent {
   }
   initListPlanners() {
     this.plannerService.listAllPlanner().subscribe(
-      response => this.listPlanners = response
+      response => this.listPlanners = response 
     );
   }
 
@@ -46,7 +46,7 @@ export class ListPlannerPageComponent {
   addPlanner() {
     this.router.navigate(['planners', 'new'])
   }
-  getDetailsPlanner(id :string) {
+  getDetailsPlanner(id: string) {
     this.router.navigate(['planners', id])
   }
   getLastUpdate(date: Date): string {

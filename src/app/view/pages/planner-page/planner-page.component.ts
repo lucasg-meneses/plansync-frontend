@@ -12,6 +12,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { getWeekdayList } from '../../../models/weekday.model.enum';
 import { TodoCardItemComponent } from '../../components/todo-card-item/todo-card-item.component';
 import { MatListModule } from '@angular/material/list';
+import { Planner, PlannerModel } from '../../../models/planner.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   standalone: true,
   imports: [
@@ -33,6 +35,7 @@ import { MatListModule } from '@angular/material/list';
 export class PlannerPageComponent {
 
   private editMode: boolean = false;
+  private planner: Planner;
   protected titlePage: string = 'Planner Details';
   protected form: FormGroup;
   protected tabNameList: Array<string> = getWeekdayList();
@@ -42,19 +45,29 @@ export class PlannerPageComponent {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private plannerService: PlannerService) {
-
+    private plannerService: PlannerService,
+    private snackBar: MatSnackBar
+  ) {
     this.form = this.formBuilder.group({
       title: ['New Planner', [Validators.required]],
       month: [this.getMonthNow(), [Validators.min(1), Validators.max(12), Validators.required]],
       year: [this.getYearNow(), [Validators.min(this.getYearNow()), Validators.required]]
     })
-
+    this.planner = new PlannerModel("",
+      this.form.get('title')!!.value,
+      this.form.get('month')!!.value,
+      this.form.get('year')!!.value,
+      "",
+      new Date(),
+      new Date()
+    );
     this.setContextPage();
   }
 
   private setContextPage() {
     const id = this.route.snapshot.paramMap.get('id');
+
+
     if (id === 'new') {
       this.titlePage = 'New Planner';
       this.editMode = true;
@@ -68,6 +81,10 @@ export class PlannerPageComponent {
           this.form.get('title')?.setValue(response.title);
           this.form.get('month')?.setValue(response.month);
           this.form.get('year')?.setValue(response.year);
+          this.planner.id = response.id;
+          this.planner.title = response.title;
+          this.planner.month = response.month;
+          this.planner.year = response.year;
         }
       );
     }
@@ -76,12 +93,37 @@ export class PlannerPageComponent {
 
   protected savePlanner() {
 
+    this.planner.title = this.form.get('title')?.value;
+    this.planner.month = this.form.get('month')?.value;
+    this.planner.year = this.form.get('year')?.value;
+    this.planner.notes = ""
+    if (this.planner.id == "") {
+      this.plannerService.savePlanner(this.planner)
+        .subscribe((response) => {
+          console.log(response, "SAVED");
+          this.snackBar.open("Saved Planner", 'Close', {
+            duration: 5000,
+            panelClass: ['snackbar-error']
+          });
+        });
+    } else {
+      this.plannerService.updatePlanner(this.planner)
+        .subscribe((response) => {
+          console.log(response, "UPDATE")
+          this.snackBar.open("Updated Planner", 'Close', {
+            duration: 5000,
+            panelClass: ['snackbar-error']
+          });
+        });
+    }
+    this.setEditMode(false);
   }
   protected backToPlanners() {
     this.router.navigate(['planners']);
   }
   protected setEditMode(edit: boolean) {
     this.editMode = edit;
+    this.disabledForms(!edit)
   }
   protected getEditMode(): boolean {
     return this.editMode;
@@ -97,7 +139,6 @@ export class PlannerPageComponent {
       this.form.get('month')?.enable();
       this.form.get('year')?.enable();
     }
-    console.log(this.getWeekdayNow())
   }
 
   protected getWeekdayNow() {
